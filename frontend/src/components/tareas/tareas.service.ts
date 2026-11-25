@@ -1,12 +1,14 @@
-import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../enviroments/enviroment';
 import { Tarea } from './tarea.model';
+
 
 @Injectable({ providedIn: 'root' })
 export class TareasService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:3000';
+  private readonly apiUrl = environment.apiUrl;
 
   listar(): Observable<Tarea[]> {
     return this.http.get<Tarea[]>(`${this.apiUrl}/tareas`);
